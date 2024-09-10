@@ -1,0 +1,94 @@
+<div class="container">
+  <div class="login my-5">
+    <div class="row w-75 mx-auto">
+      <div class="card shadow overflow-hidden">
+        <div class="row">
+          <div class="col-6 p-0">
+            <div class="d-flex h-100 flex-column justify-content-center px-5">
+              <h1 class="text-center">Login</h1>
+              <form #login="ngForm" class="needs-validation" novalidate (ngSubmit)="onLogin(login)">
+                <div class="mb-3">
+                  <label class="form-label" for="username">
+                    <i class="fa-light fa-user me-1 text-orange"></i>
+                    <span>Username:</span>
+                  </label>
+                  <input autocomplete="true"
+                         class="form-control"
+                         id="username"
+                         name="username"
+                         ngModel
+                         pattern="[A-Za-z0-9]+"
+                         placeholder="Type your username"
+                         required
+                         type="text"
+                  >
+                  <div class="invalid-feedback">
+                    Please input username
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for="password">
+                    <i class="fa-light fa-lock me-1 text-orange"></i>
+                    <span>Password</span>
+                  </label>
+                  <input autocomplete="true"
+                         class="form-control"
+                         id="password"
+                         name="password"
+                         ngModel
+                         pattern="[A-Za-z0-9]+"
+                         placeholder="Type your password"
+                         required
+                         type="password"
+                  >
+                  <div class="invalid-feedback">
+                    Please input password
+                  </div>
+                </div>
+                <div class="d-block mb-1">
+                  <a class="small fst-italic text-black-50" href="#">Forgot password?</a>
+                </div>
+                <div class="d-block mt-3 mb-1 d-none" id="login__feedback">
+                  <p class="small fst-italic text-danger mb-0 text-center">Wrong Username or Password!</p>
+                </div>
+                <button class="app-btn text-white w-100 border-0 py-2 px-4 my-3 transition bg-orange bg-gradient"
+                        type="submit">
+                  Login
+                </button>
+                <div class="d-block mb-1">
+                  <p class="mb-0 text-center">Don't have an account? <a class="text-orange" routerLink="/register">Register</a>
+                  </p>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="col-6 p-0">
+            <div class="ratio ratio-3x4">
+              <div class="carousel slide"
+                   data-bs-theme="dark"
+                   id="myCarousel"
+                   data-bs-ride="carousel"
+                   data-bs-pause="false"
+                   data-bs-keyboard="false">
+                <div class="carousel-inner">
+                  <div class="carousel-item ratio ratio-3x4 active" data-bs-interval="5000">
+                    <img alt="" class="d-block object-fit-cover" src="/assets/img/quy-thuan-khanh.jpg">
+                  </div>
+                  <div class="carousel-item ratio ratio-3x4" data-bs-interval="5000">
+                    <img alt="" class="d-block object-fit-cover" src="/assets/img/ngo-khong.jpg">
+                  </div>
+                  <div class="carousel-item ratio ratio-3x4" data-bs-interval="5000">
+                    <img alt="" class="d-block object-fit-cover" src="/assets/img/diep-an.jpg">
+                  </div>
+                  <div class="carousel-item ratio ratio-3x4" data-bs-interval="5000">
+                    <img alt="" class="d-block object-fit-cover" src="/assets/img/hoang-bac-nguyet.jpg">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,112 @@
+<div class="container">
+  <div class="register my-5">
+    <div class="row w-75 mx-auto">
+      <div class="card shadow overflow-hidden">
+        <div class="row">
+          <div class="col-6 p-0">
+            <div class="ratio ratio-3x4">
+              <div class="carousel slide"
+                   data-bs-theme="dark"
+                   id="myCarousel"
+                   data-bs-ride="carousel"
+                   data-bs-pause="false"
+                   data-bs-keyboard="false">
+                <div class="carousel-inner">
+                  <div class="carousel-item ratio ratio-3x4 active" data-bs-interval="5000">
+                    <img alt="" class="d-block object-fit-cover" src="/assets/img/quy-thuan-khanh.jpg">
+                  </div>
+                  <div class="carousel-item ratio ratio-3x4" data-bs-interval="5000">
+                    <img alt="" class="d-block object-fit-cover" src="/assets/img/ngo-khong.jpg">
+                  </div>
+                  <div class="carousel-item ratio ratio-3x4" data-bs-interval="5000">
+                    <img alt="" class="d-block object-fit-cover" src="/assets/img/diep-an.jpg">
+                  </div>
+                  <div class="carousel-item ratio ratio-3x4" data-bs-interval="5000">
+                    <img alt="" class="d-block object-fit-cover" src="/assets/img/hoang-bac-nguyet.jpg">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 p-0">
+            <div class="d-flex h-100 flex-column justify-content-center px-5">
+              <h1 class="text-center">Register</h1>
+              <form #register="ngForm"
+                    class="needs-validation" novalidate
+                    (ngSubmit)="onRegister(register)"
+                    [ngClass]="{'was-validated': isSubmitted}"
+              >
+                <div class="mb-3">
+                  <label class="form-label" for="username">
+                    <i class="fa-light fa-user me-1 text-orange"></i>
+                    <span>Username:</span>
+                  </label>
+                  <input autocomplete="true"
+                         class="form-control"
+                         id="username"
+                         name="username"
+                         ngModel
+                         placeholder="Type your username"
+                         type="text"
+                         required
+                  >
+                  <div class="invalid-feedback">
+                    Username không được trống!
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for="password">
+                    <i class="fa-light fa-lock me-1 text-orange"></i>
+                    <span>Password</span>
+                  </label>
+                  <input autocomplete="true"
+                         class="form-control"
+                         id="password"
+                         name="password"
+                         ngModel
+                         placeholder="Type your password"
+                         type="password"
+                         required
+                  >
+                  <div class="invalid-feedback">
+                    Mật khẩu có độ dài từ 6 đến 15 ký tự
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for="confirm-password">
+                    <i class="fa-light fa-lock me-1 text-orange"></i>
+                    <span>Confirm Password</span>
+                  </label>
+                  <input autocomplete="true"
+                         class="form-control"
+                         id="confirm-password"
+                         name="confirmPassword"
+                         ngModel
+                         placeholder="Confirm password"
+                         type="password"
+                         required
+                  >
+                  <div class="invalid-feedback">
+                    Mật khẩu có độ dài từ 6 đến 15 ký tự
+                  </div>
+                </div>
+                <div class="d-block mb-1">
+                  <input checked class="form-check-input" id="remember-me" type="checkbox">
+                  <label class="ms-1 form-check-label" for="remember-me">
+                    <span>I agree to the <a class="text-orange" href="#">Terms of service</a> and <a class="text-orange" href="#">Privacy Policy.</a></span>
+                  </label>
+                </div>
+                <button class="app-btn text-white w-100 border-0 py-2 px-4 my-3 transition bg-orange bg-gradient"
+                        type="submit">Register
+                </button>
+                <div class="d-block mb-1">
+                  <p class="mb-0 text-center">Already have an account? <a class="text-orange" routerLink="/login">Login</a></p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

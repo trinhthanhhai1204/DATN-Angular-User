@@ -1,0 +1,101 @@
+<div class="my-3 pb-3 shadow">
+  <div class="px-5 py-2 border-bottom bg-light" #orderHeader>
+    <div class="d-flex justify-content-end">
+      <div class="position-relative">
+        <i class="fa-solid fa-circle-info me-2 text-orange"></i>
+        <div class="position-absolute bg-white py-2 border">
+          <p class="d-block mb-0 w-auto px-3">Mã đơn hàng: {{order.id}}</p>
+          <p class="d-block mb-0 w-auto px-3">Thời gian tạo đơn: {{order.createAt | date:'dd/MM/y, h:mm a'}}</p>
+          @if (order.finishedAt) {
+            <p class="d-block mb-0 w-auto px-3">Hoàn thành lúc: {{order.finishedAt | date:'dd/MM/y, h:mm a'}}</p>
+          }
+        </div>
+      </div>
+      <p class="fw-light mb-0 me-3">
+        @switch (order.orderStatus) {
+          @case ("WAIT_FOR_PAY") {
+            Chờ thanh toán...
+          }
+          @case ("PREPARING") {
+            Đơn hàng đang được chuẩn bị...
+          }
+          @case ("PENDING") {
+            Đặt hàng thành công!
+          }
+          @case ("SHIPPING") {
+            Đang giao hàng...
+          }
+          @case ("SUCCESS") {
+            Giao hàng thành công!
+          }
+          @case ("DECLINED") {
+            Đơn hàng đã huỷ
+          }
+        }
+      </p>
+    </div>
+  </div>
+  <div class="border-bottom d-none" #orderBody>
+    <div class="px-5 py-3">
+      <div *ngFor="let orderDetail of order.orderDetails" class="px-0 my-2 d-flex flex-wrap align-items-center">
+        <img alt=""
+             class="object-fit-cover"
+             src="{{orderDetail.option.book.image}}">
+        <div class="ms-2 col">
+          <p class="mb-0 fw-bold fs-5">{{orderDetail.option.book.name}}</p>
+          <p class="mb-0">{{orderDetail.option.name}}</p>
+          <p class="mb-0 small fw-light">x{{orderDetail.quantity}}</p>
+        </div>
+        <div>
+          <small class="h6 mb-1 me-3">{{orderDetail.price | vndCurrency}} đồng</small>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="my-2">
+    <div class="px-5 py-2">
+      <div class="row justify-content-end">
+        <div class="col-6 d-flex justify-content-end">
+          <table class="table table-borderless w-auto mb-0">
+            <tbody>
+            <tr>
+              <td class="px-4 py-2">
+                <p class="mb-0">Thành tiền</p>
+              </td>
+              <td class="px-3 py-2">
+                <p class="mb-0 fw-bold text-end">{{getTotalPrice(order) | vndCurrency}} đồng</p>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="my-2 d-flex justify-content-end" #orderFooter>
+    <div class="px-5 w-auto">
+      @if (order.orderStatus === "WAIT_FOR_PAY" || order.orderStatus === "PENDING") {
+        <a class="btn me-3 px-3 py-2 transition text-white bg-orange bg-gradient d-none"
+           type="button"
+           (click)="onDeclined(order.id)"
+        >
+          <i class="fa-light fa-xmark me-2"></i>
+          <span>Huỷ đơn hàng</span>
+        </a>
+      }
+      @if (order.orderStatus === "WAIT_FOR_PAY") {
+        <a class="btn me-3 px-3 py-2 transition text-white bg-orange bg-gradient d-none"
+           type="button"
+           (click)="onPaymentRequest(order.id)"
+        >
+          <i class="fa-light fa-credit-card-front me-2"></i>
+          <span>Thanh toán</span>
+        </a>
+      }
+      <a class="btn me-3 px-3 py-2 transition text-white bg-orange bg-gradient" routerLink="/order-details/{{order.id}}" type="button">
+        <i class="fa-light fa-magnifying-glass me-2"></i>
+        <span>Thông tin đơn hàng</span>
+      </a>
+    </div>
+  </div>
+</div>

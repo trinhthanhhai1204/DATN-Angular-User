@@ -1,0 +1,12 @@
+<a title="{{book.name}}"
+   routerLink="/book-details/{{book.id}}" class="d-block">
+  <div class="ratio overflow-hidden ratio-3x4">
+    <img [ngSrc]="book.image"
+         alt=""
+         class="object-fit-cover"
+         fill
+         priority>
+  </div>
+  <p class="my-1">{{book.name}}</p>
+  <p class="my-1">Giá: {{book.price | vndCurrency}} đồng</p>
+</a>

@@ -1,0 +1,103 @@
+<div class="container mx-auto my-5">
+  @if (book) {
+    <div class="product-details mb-5">
+      <div class="row w-75 align-items-start mx-auto">
+        <div class="col-5">
+          <div class="row">
+            <div class="col-12">
+              <div class="ratio ratio-3x4 bg-black bg-gradient overflow-hidden">
+                <img alt="" class="product-details-image object-fit-cover transition" id="book-details__image" [ngSrc]="book.image" fill priority data-bs-toggle="modal" data-bs-target="#imageModal">
+              </div>
+            </div>
+            <div class="col-12 mb-3">
+              <div id="book-details__small-image-list" class="carousel slide">
+                <div class="carousel-inner">
+                  <div class="carousel-item" *ngFor="let carouselItem of carouselItems; index as i" [ngClass]="{'active': i == 0}">
+                    <div class="row mx-0">
+                      <div class="col-3 px-0" *ngFor="let image of carouselItem">
+                        <div class="ratio ratio-1x1">
+                          <img class="object-fit-cover" [src]="image" alt="" (click)="onChangeImage($event)">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#book-details__small-image-list" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#book-details__small-image-list" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-7">
+          <nav>
+            <ol class="breadcrumb" id="book-details__breadcrump">
+              <li class="breadcrumb-item">
+                <a class="transition" routerLink="/">Home</a>
+              </li>
+              <li class="breadcrumb-item">
+                <a class="transition" routerLink="/books">Books</a>
+              </li>
+              <li aria-current="page" class="breadcrumb-item active">
+                <a class="transition" routerLink="/book-details/{{bookId}}">
+                  {{ book.name }}
+                </a>
+              </li>
+            </ol>
+          </nav>
+          <h1 class="fw-bold mb-3" id="book-details__name">{{ book.name }}</h1>
+          <h4 id="book-details__price">Giá: {{book.price | vndCurrency}} đồng</h4>
+          <h6 id="book-details__quantity">Số lượng còn lại: {{maxQuantity}}</h6>
+          <label class="d-none" for="size"></label>
+          <select class="form-select d-block py-2 mt-4 border-1 mb-2" id="size" [(ngModel)]="currentOptionId" (change)="onOptionChange($event)">
+            <option *ngFor="let option of options" value="{{option.id}}">{{ option.name }}</option>
+          </select>
+          <label class="d-none" for="quantity"></label>
+          <input class="form-control d-inline-block me-3 my-3 p-2"
+                 id="quantity"
+                 [min]="currentOption.quantity < 1 ? 0 : 1" type="number"
+                 max="{{currentOption.quantity}}"
+                 [(ngModel)]="quantity"
+                 *ngIf="currentOption"
+                 (change)="onQuantityChange($event)"
+                 [disabled]="maxQuantity === 0">
+          <button class="app-btn text-white border-0 py-2 px-4 my-3 transition bg-orange bg-gradient"
+                  id="book-details__btn"
+                  (click)="onAddToCart()">Add to Cart
+          </button>
+          <p class="fw-bold fs-5 mb-3 w-auto">
+            Book Details
+            <i class="ms-1 fa fa-indent text-orange"></i>
+          </p>
+          <p class="product-detail-categories fs-6 fst-italic" id="book-details__categories">
+            <span class="fw-bold">Categories:</span>
+            <a *ngFor="let category of categories" class="transition" routerLink="/books"
+               [queryParams]="{categoryId: category.id}">{{ category.name }}</a>
+          </p>
+          <p class="fs-6 fst-italic" id="book-details__details">
+            <span class="fw-bold">Description:</span>
+            {{book.description}}
+          </p>
+        </div>
+        <div class="modal fade" id="imageModal" tabindex="-1">
+          <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+              <div class="modal-body p-0">
+                <div class="ratio ratio-16x9 overflow-y-scroll">
+                  <div>
+                    <img alt="" class="w-100" [src]="book.image">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</div>

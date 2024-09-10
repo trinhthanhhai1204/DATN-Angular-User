@@ -1,0 +1,22 @@
+<nav class="user-navbar shadow-lg">
+  <ul class="nav nav-pills flex-column">
+    <li class="nav-item">
+      <a class="py-2 nav-link position-relative" routerLink="/user">
+        <i class="me-2 nav-icon fa-light fa-user"></i>
+        <p class="d-inline">User</p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="py-2 nav-link position-relative" routerLink="/orders">
+        <i class="me-2 nav-icon fa-light fa-receipt"></i>
+        <p class="d-inline">Your Order</p>
+      </a>
+    </li>
+    <li class="nav-item" (click)="onLogOut()">
+      <a class="py-2 nav-link position-relative" id="user__log-out">
+        <i class="me-2 nav-icon fa-light fa-arrow-right-from-bracket"></i>
+        <p class="d-inline">Log Out</p>
+      </a>
+    </li>
+  </ul>
+</nav>

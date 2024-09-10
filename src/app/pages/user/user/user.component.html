@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="user my-5">
+    <div class="row">
+      <div class="col-3">
+        <app-user-sidebar></app-user-sidebar>
+      </div>
+      <div class="col-9">
+        <div class="user-card card border-0 shadow">
+          <div class="card-header bg-orange bg-gradient">
+            <p class="card-title mb-0">
+              <i class="me-2 fa-light fa-user"></i>
+              User Info
+            </p>
+          </div>
+          <div class="card-body">
+            @if (user) {
+              <div class="row justify-content-lg-start justify-content-center">
+                <div class="col-12 col-lg-3 col-md-4 col-sm-6 d-flex justify-content-center">
+                  <div class="col-6 col-sm-12 pb-3">
+                    <div class="ratio ratio-1x1">
+                      <img alt="" class="w-100 h-100 object-fit-cover"
+                           id="user__image" [src]="user.image">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 d-flex justify-content-center justify-content-md-start">
+                  <div>
+                    <p>
+                      <i class="me-2 fa-light fa-user"></i>
+                      <span id="user__username">{{user.username == "owner" ? "TKhanh." : user.username}}</span>
+                    </p>
+                    <p>
+                      <i class="me-2 fa-light fa-signature"></i>
+                      <span id="user__full-name">{{user.name == "" ? "Người dùng mới" : user.name}}</span>
+                    </p>
+                    <p>
+                      <i class="me-2 fa-light fa-user-gear"></i>
+                      <span id="user__gender">{{user.gender == "male" ? "Nam" : user.gender == "female" ? "Nữ" : "Chọn giới tính..."}}</span>
+                    </p>
+                    <p>
+                      <i class="me-2 fa-light fa-phone"></i>
+                      <span id="user__phone">{{user.phone == "" ? "Nhập số điện thoại..." : user.phone}}</span>
+                    </p>
+                    <p>
+                      <i class="me-2 fa-light fa-pencil"></i>
+                      <a routerLink="/edit-info">Edit info</a>
+                    </p>
+                    <p>
+                      <i class="me-2 fa-light fa-lock"></i>
+                      <a routerLink="/change-password">Change password</a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

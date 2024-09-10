@@ -1,0 +1,12 @@
+<a title="${name}"
+   routerLink="/"
+   class="d-block">
+  <div class="ratio overflow-hidden ratio-3x4">
+    <img [ngSrc]="category.image"
+         alt=""
+         class="object-fit-cover"
+         fill
+         priority>
+  </div>
+  <p class="my-1">{{category.name}}</p>
+</a>

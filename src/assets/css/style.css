@@ -1,0 +1,299 @@
+/*
+    Settings
+*/
+a {
+    color: var(--bs-black);
+    text-decoration: none;
+}
+.bg-orange {
+    --bs-bg-opacity: 1;
+    background-color: var(--bs-orange);
+}
+.navbar {
+    backdrop-filter: blur(3px);
+    box-shadow: rgba(0, 0, 0, 0.075) 0 4px 8px 0;
+}
+.navbar > a:nth-child(1) img {
+    width: 120px;
+}
+.navbar > nav > ul > li > div > img {
+    width: 3rem;
+    height: 3rem;
+    object-fit: cover;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.navbar > nav > ul > li > div > .dropdown-menu[data-bs-popper] {
+  border-radius: 0;
+  top: 100%;
+  left: initial;
+  right: 0;
+}
+.navbar > nav > ul > li > div > ul > li:hover {
+  background-color: var(--bs-gray-200);
+}
+.navbar > nav > ul > li > div > ul > li > a {
+  cursor: pointer;
+}
+.navbar > a:nth-child(3) img {
+    width: 30px;
+}
+.footer .col-5 img {
+    width: 180px;
+}
+.products .col-3 a {
+    transition: transform 0.5s;
+}
+.products .col-3 a:hover {
+    transform: translateY(-5px);
+}
+.ratio-3x4 {
+    --bs-aspect-ratio: calc(400%/3);
+}
+.text-orange {
+    color: var(--bs-orange);
+}
+.transition {
+    transition: 0.25s ease-in-out !important;
+}
+.breadcrumb-item a:hover {
+    color: var(--bs-orange) !important;
+}
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: var(--bs-black);
+    background-color: var(--bs-orange);
+    background-image: var(--bs-gradient);
+}
+.nav-link {
+    color: var(--bs-black);
+}
+.nav-link:focus, .nav-link:hover {
+    color: var(--bs-orange);
+}
+.carousel-item {
+    transition-duration: 1s;
+}
+
+select {
+    border-color: var(--bs-orange);
+    outline-color: var(--bs-orange);
+}
+.form-select {
+    border-color: var(--bs-orange);
+}
+.form-select:focus {
+    box-shadow: none;
+    border-color: var(--bs-orange);
+    outline: var(--bs-orange) solid 1px;
+}
+.was-validated .form-select:valid {
+    border-color: var(--bs-form-valid-border-color);
+    outline-color: var(--bs-form-valid-border-color);
+}
+.was-validated .form-select:invalid {
+    border-color: var(--bs-form-invalid-border-color);
+    outline-color: var(--bs-form-invalid-border-color);
+}
+.form-select.is-valid:focus,
+.was-validated .form-select:valid:focus,
+.form-select.is-invalid:focus,
+.was-validated .form-select:invalid:focus {
+    box-shadow: none;
+}
+
+.form-check-input:checked {
+    background-color: var(--bs-orange);
+    border-color: var(--bs-orange);
+}
+.form-check-input:focus {
+    border-color: var(--bs-orange);
+    box-shadow: none;
+}
+
+input {
+    outline-color: var(--bs-orange);
+}
+.form-control {
+    border: 0.05rem solid var(--bs-orange);
+}
+.form-control:focus {
+    box-shadow: none;
+    border-color: var(--bs-orange);
+    outline: var(--bs-orange) solid 1px;
+}
+.was-validated .form-control:valid {
+    outline-color: var(--bs-form-valid-border-color);
+}
+.was-validated .form-control:invalid {
+    outline-color: var(--bs-form-invalid-border-color);
+}
+.form-control.is-valid:focus, .was-validated .form-control:valid:focus {
+    box-shadow: none;
+    outline: var(--bs-form-valid-border-color) solid 1px;
+}
+.form-control.is-invalid:focus, .was-validated .form-control:invalid:focus {
+    box-shadow: none;
+    outline: var(--bs-form-invalid-color) solid 1px;
+}
+
+button.app-btn {
+    border-radius: 1.5rem;
+}
+button.app-btn:hover {
+    background-color: rgb(86, 52, 52);
+}
+
+.w-16 {
+  width: 4rem;
+}
+
+.h-16 {
+  height: 4rem;
+}
+
+.w-20 {
+  width: 5rem;
+}
+
+.h-20 {
+  height: 5rem;
+}
+
+.border-radius-0 {
+  border-radius: 0 !important;
+}
+
+.border-radius-50 {
+  border-radius: 50% !important;
+}
+
+/*
+    Home Page
+*/
+.index-carousel {
+    margin-top: -4rem;
+}
+
+/*
+    Books
+*/
+.page-btn span {
+    border: 1px solid var(--bs-orange);
+    cursor: pointer;
+}
+.page-btn span:hover {
+    background: var(--bs-orange);
+    color: var(--bs-white);
+}
+
+/*
+    Book Details
+*/
+.product-details input {
+    width: 70px;
+    border-radius: 0;
+}
+.product-details select {
+    width: auto;
+    border-radius: 0;
+}
+.product-details-image:hover {
+    opacity: 0.75;
+    transform: scale(1.1);
+}
+.product-detail-categories a:hover {
+    color: var(--bs-orange) !important;
+}
+.product-detail-categories a:nth-last-child(n + 2)::after {
+    color: var(--bs-black);
+    content: ", ";
+}
+
+/*
+    Cart
+*/
+
+.cart input {
+    width: 70px;
+    border-radius: 0;
+}
+.cart th {
+    --bs-table-bg: var(--bs-orange);
+}
+.cart img {
+    width: 5rem;
+    height: 5rem;
+}
+.cart .row:nth-child(2) table {
+    max-width: 25rem;
+    border-top: 0.125rem solid var(--bs-orange);
+}
+.cart .card-body > div > div:nth-child(4) > div > a {
+    width: 25rem;
+}
+.cart .card-body > div > div:nth-child(4) > div > a:hover {
+    background-color: rgb(86, 52, 52);
+}
+.cart .card-body > div > div:nth-child(2) > table tr td:last-child i {
+    font-size: 1.25rem;
+}
+
+/*
+    User
+ */
+.user-navbar .nav-link, .user-card .card-title {
+    line-height: 1.8;
+}
+.user-navbar .nav-icon, .user-card .card-title i {
+    font-size: 1.25rem;
+}
+.user img {
+    border-radius: 50%;
+}
+#user__log-out {
+    cursor: pointer;
+}
+
+/*
+    Edit info
+*/
+.edit-info img {
+    border-radius: 50%;
+}
+
+/*
+    Order
+ */
+
+.order img {
+    width: 4rem;
+    height: 4rem;
+}
+
+.order .card-body > app-order > div > div:nth-child(4) > div > a:hover {
+    background-color: rgb(86, 52, 52);
+}
+
+.order .card-body > app-order > div > div:first-child > div > div > div {
+  display: none;
+  width: 21rem;
+  left: initial;
+  right: 0;
+}
+
+.order .card-body > app-order > div > div:first-child > div > div:hover > div {
+  display: block;
+}
+
+#order-details__action > div > div > div > div > a:hover {
+  background-color: rgb(86, 52, 52);
+}
+
+/*
+    Billing
+ */
+
+.billing img {
+    width: 4rem;
+    height: 4rem;
+}

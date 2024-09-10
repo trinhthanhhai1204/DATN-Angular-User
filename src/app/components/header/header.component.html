@@ -1,0 +1,53 @@
+<div class="navbar bg-transparent py-0 px-5 sticky-top">
+  <a class="navbar-brand m-0" href="../../../index.html">
+    <img alt="" src="/assets/img/logo.png">
+  </a>
+  <nav class="flex-grow-1 text-end px-3">
+    <ul class="navbar-nav flex-row justify-content-end">
+      <li class="nav-item d-flex align-items-center">
+        <a class="nav-link px-4 py-3" routerLink="/">Home</a>
+      </li>
+      <li class="nav-item d-flex align-items-center">
+        <a class="nav-link px-4 py-3" routerLink="/books">Books</a>
+      </li>
+      @if (isLogin) {
+        <li class="nav-item d-flex align-items-center">
+          <div class="nav-link px-3 position-relative dropdown">
+            <img alt=""
+                 [src]="avatar"
+                 class="dropdown-toggle"
+                 data-bs-toggle="dropdown"
+            >
+            <ul class="dropdown-menu position-absolute py-0">
+              <li class="py-2 px-3 transition">
+                <a class="d-block" routerLink="/user">
+                  <i class="me-2 nav-icon fa-light fa-user"></i>
+                  <span class="d-inline-block">User</span>
+                </a>
+              </li>
+              <li class="py-2 px-3 transition">
+                <a class="d-block" routerLink="/orders">
+                  <i class="me-2 nav-icon fa-light fa-receipt"></i>
+                  <span class="d-inline-block">Orders</span>
+                </a>
+              </li>
+              <li class="py-2 px-3 transition">
+                <a class="d-block" (click)="onLogOut()">
+                  <i class="me-2 nav-icon fa-light fa-arrow-right-from-bracket"></i>
+                  <span class="d-inline-block">Log Out</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+      } @else {
+        <li class="nav-item d-flex align-items-center">
+          <a class="nav-link px-4 py-3" routerLink="/login">Login</a>
+        </li>
+      }
+    </ul>
+  </nav>
+  <a class="navbar-brand m-0" routerLink="/cart">
+    <img alt="" class="m-0" src="/assets/img/cart.png">
+  </a>
+</div>

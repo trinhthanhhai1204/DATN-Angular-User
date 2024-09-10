@@ -1,0 +1,165 @@
+<div class="container">
+  <div class="edit-info my-5">
+    <div class="row">
+      <div class="col-3">
+        <app-user-sidebar></app-user-sidebar>
+      </div>
+      <div class="col-9">
+        <div class="user-card card border-0 shadow">
+          <div class="card-header bg-orange bg-gradient">
+            <p class="card-title mb-0">
+              <i class="me-2 fa-light fa-pencil"></i>
+              Edit Info
+            </p>
+          </div>
+          <div class="card-body">
+            <div class="row justify-content-xl-start justify-content-center">
+              <div class="col-12 col-lg-3 col-md-4 col-sm-6 d-flex justify-content-center">
+                <div class="col-6 col-sm-12 pb-3">
+                  <div class="ratio ratio-1x1">
+                    <input class="form-control d-none"
+                           type="file"
+                           id="imageForm"
+                           (change)="onChangeImage($event)"
+                    >
+                    <div class="w-100">
+                      <label for="imageForm" class="d-block ratio ratio-1x1">
+                        <img class="object-fit-cover" [src]="image" alt="">
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col col-xl-6 col-lg-7">
+                <form (ngSubmit)="onUpdateCustomer()">
+                  <div class="mb-3">
+                    <label class="form-label" for="full-name">
+                      <i class="fa-light fa-signature me-1"></i>
+                      <span>Full name:</span>
+                    </label>
+                    <input autocomplete="true"
+                           class="form-control"
+                           id="full-name"
+                           name="fullName"
+                           placeholder="Type your username"
+                           type="text"
+                           [(ngModel)]="fullName"
+                    >
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">
+                      <i class="fa-light fa-user-gear me-1"></i>
+                      <span>Gender:</span>
+                    </label>
+                    <div class="form-check">
+                      <input class="form-check-input" id="gender-male"
+                             name="gender" type="radio" value="male"
+                             [(ngModel)]="gender"
+                      >
+                      <label class="form-check-label" for="gender-male">
+                        Male
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" id="gender-female" name="gender"
+                             type="radio" value="female"
+                             [(ngModel)]="gender"
+                      >
+                      <label class="form-check-label" for="gender-female">
+                        Female
+                      </label>
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label" for="phone">
+                      <i class="fa-light fa-phone me-1"></i>
+                      <span>Phone:</span>
+                    </label>
+                    <input autocomplete="true"
+                           class="form-control"
+                           id="phone"
+                           name="phone"
+                           placeholder="Type your phone number"
+                           type="text"
+                           pattern="0[0-9]{9}"
+                           [(ngModel)]="phone"
+                    >
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label" for="phone">
+                      <i class="fa-light fa-birthday-cake me-1"></i>
+                      <span>Birthday:</span>
+                    </label>
+                    <input autocomplete="true"
+                           class="form-control"
+                           name="birthday"
+                           id="birthday"
+                           type="date"
+                           [(ngModel)]="birthday"
+                    >
+                  </div>
+                  <div class="mb-3">
+                    <div class="row">
+                      <div class="col-4">
+                        <label class="form-label" for="province">
+                          <span>Province:</span>
+                        </label>
+                        <select
+                          class="form-select"
+                          id="province"
+                          name="province"
+                          [(ngModel)]="province"
+                          required
+                          (change)="onProvinceChange($event)"
+                        >
+                          <option selected="" value="">Select province</option>
+                          <option *ngFor="let province of provinces" [value]="province.code">{{province.name}}</option>
+                        </select>
+                      </div>
+                      <div class="col-4">
+                        <label class="form-label" for="district">
+                          <span>District:</span>
+                        </label>
+                        <select
+                          class="form-select"
+                          id="district"
+                          name="district"
+                          [(ngModel)]="district"
+                          required
+                          (change)="onDistrictChange($event)"
+                        >
+                          <option selected="" value="">Select district</option>
+                          <option *ngFor="let district of districts" [value]="district.code">{{district.fullName}}</option>
+                        </select>
+                      </div>
+                      <div class="col-4">
+                        <label class="form-label" for="ward">
+                          <span>Ward:</span>
+                        </label>
+                        <select class="form-select"
+                                id="ward"
+                                name="ward"
+                                [(ngModel)]="ward"
+                                required>
+                          <option selected="" value="">Select ward</option>
+                          <option *ngFor="let ward of wards" [value]="ward.code">{{ward.fullName}}</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mb-3 row">
+                    <div class="col-lg-6 col-12">
+                      <button class="app-btn text-white w-100 border-0 py-2 px-4 my-2 transition bg-orange bg-gradient">
+                        Save changes
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

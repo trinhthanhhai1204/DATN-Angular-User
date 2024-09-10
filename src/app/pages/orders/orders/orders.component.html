@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="order my-5">
+    <div class="row">
+      <div class="col-3">
+        <app-user-sidebar></app-user-sidebar>
+      </div>
+      <div class="col-9">
+        <div class="user-card card bg-transparent border-0">
+          <div class="card-header bg-orange bg-gradient border-0">
+            <div class="row">
+              <div class="col">
+                <p class="card-title mb-0">
+                  <i class="me-2 fa-light fa-receipt"></i>
+                  Orders
+                </p>
+              </div>
+              <div class="col d-flex justify-content-end">
+                <div class="card-tools">
+                  <div class="w-auto">
+                    <label for="status-selector"></label>
+                    <select (change)="onStatusChange()"
+                            [(ngModel)]="status"
+                            class="p-1"
+                            id="status-selector"
+                    >
+                      <option value="">ALL</option>
+                      <option *ngFor="let orderStatus of orderStatusList"
+                              [value]="orderStatus.index">{{ orderStatus.name }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-body p-0" id="orders__orders">
+            <app-order *ngFor="let order of orders" [order]="order"
+                       (onUpdateOrderStatus)="onUpdateOrderStatus($event)"
+                       (onPayment)="onPayment($event)"
+            ></app-order>
+          </div>
+        </div>
+        @if (pages > 1) {
+          <div class="page-btn mb-5 mx-auto">
+            @if (page != 0) {
+              <span class="transition d-inline-block ms-2 mb-2 text-center py-2 px-3 page-prev" (click)="onPrevClick()">&#8592;</span>
+            }
+            <span class="transition d-inline-block ms-2 mb-2 text-center py-2 px-3" *ngFor="let i of pagesSequence" (click)="setPage(i - 1)" [ngClass]="{'bg-orange text-white': page === i - 1}">{{i}}</span>
+            @if (page != pages - 1) {
+              <span class="transition d-inline-block ms-2 mb-2 text-center py-2 px-3 page-next" (click)="onNextClick()">&#8594;</span>
+            }
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>

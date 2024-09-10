@@ -1,0 +1,14 @@
+<div class="px-0 my-2 d-flex flex-wrap align-items-center">
+  <img alt=""
+       [src]="orderDetail.option.book.image"
+       class="object-fit-cover"
+  >
+  <div class="ms-2 col">
+    <p class="mb-0 fw-bold fs-5">{{orderDetail.option.book.name}}</p>
+    <p class="mb-0">{{orderDetail.option.name}}</p>
+    <p class="mb-0 small fw-light">x{{orderDetail.quantity}}</p>
+  </div>
+  <div>
+    <small class="h6 mb-1 me-3">{{orderDetail.price | vndCurrency}} đồng</small>
+  </div>
+</div>

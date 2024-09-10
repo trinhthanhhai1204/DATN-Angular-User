@@ -1,0 +1,176 @@
+<div class="container">
+  <div class="order my-5">
+    <div class="row">
+      <div class="col-3">
+        <app-user-sidebar></app-user-sidebar>
+      </div>
+      @if (order){
+        <div class="col-9">
+          <div class="user-card card bg-transparent border-0">
+            <div class="card-header bg-orange bg-gradient border-0">
+              <p class="card-title mb-0">
+                <i class="me-2 fa-light fa-receipt"></i>
+                Order Details
+              </p>
+            </div>
+            <div class="card-body p-0">
+              <div class="my-3 shadow" id="order-details__products">
+                <div class="py-3 px-5">
+                  <app-order-detail-book *ngFor="let orderDetail of order.orderDetails" [orderDetail]="orderDetail"></app-order-detail-book>
+                </div>
+              </div>
+              <div class="my-3 pb-3 shadow" id="order-details__info">
+                <div class="px-5">
+                  <div class="row py-3">
+                    <div class="col-6">
+                      <p class="d-block mb-0 fs-3 fw-light">Địa chỉ nhận hàng</p>
+                      <p class="d-block mb-0">{{order.consigneeName}}</p>
+                      <i class="d-block text-black-50">{{order.phone}}</i>
+                      @if (order.ward) {
+                        <i class="d-block text-black-50">{{order.ward.fullName}} - {{order.district.fullName}} - {{order.province.fullName}}</i>
+                      }
+                      <i class="d-block text-black-50">{{order.address}}</i>
+                    </div>
+                    <div class="col-6">
+                      <div class="row">
+                        <div class="col mb-2 d-flex justify-content-end">
+                          <div class="w-auto">
+                            <table class="table table-borderless w-auto">
+                              <tbody>
+                              <tr *ngFor="let orderLog of order.orderLogs">
+                                <td class="px-3 py-2">
+                                  <p class="mb-0 small">{{orderLog.time | date:'HH:mm dd/MM/y'}}</p>
+                                </td>
+                                <td class="px-3 py-2">
+                                  <p class="small mb-0 text-black-50">{{orderLog.description}}</p>
+                                </td>
+                              </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <strong class="text-end mb-0">
+                          @switch (order.orderStatus) {
+                            @case ("WAIT_FOR_PAY") {
+                              Chờ thanh toán...
+                            }
+                            @case ("PREPARING") {
+                              Đơn hàng đang được chuẩn bị...
+                            }
+                            @case ("PENDING") {
+                              Đặt hàng thành công!
+                            }
+                            @case ("SHIPPING") {
+                              Đang giao hàng...
+                            }
+                            @case ("SUCCESS") {
+                              Giao hàng thành công!
+                            }
+                            @case ("DECLINED") {
+                              Đơn hàng đã huỷ
+                            }
+                          }
+                        </strong>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="my-3 shadow" id="order-details__payment">
+                <div class="px-5 py-2">
+                  <div class="row py-2">
+                    <div class="col-6">
+                      <p class="d-block mb-0 fw-light fs-5">Phương thức thanh toán:
+                        <span class="fw-normal">
+                        @switch (order.paymentMethod) {
+                          @case ("BANK") {
+                            Chuyển khoản
+                          }
+                          @case ("MONEY") {
+                            Tiền mặt
+                          }
+                        }
+                      </span>
+                      </p>
+                      <p class="fw-light mb-0">Mã đơn hàng: <span class="fw-normal">{{order.id}}</span></p>
+                      <p class="fw-light mb-0">Tài khoản tạo đơn: <span class="fw-normal">{{order.customer.username}}</span></p>
+                      <p class="fw-light mb-0">Ngày tạo đơn: <span class="fw-normal">{{order.createAt | date:'HH:mm dd/MM/y'}}</span></p>
+                      <strong>
+                        @if (order.orderStatus === "WAIT_FOR_PAY") {
+                          Chờ thanh toán...
+                        }
+                        @else {
+                          Đã thanh toán!
+                        }
+                        </strong>
+                    </div>
+                    <div class="col-6 d-flex justify-content-end">
+                      <table class="table table-borderless w-auto mb-0">
+                        <tbody>
+                        <tr>
+                          <td class="px-4 py-2">
+                            <p class="mb-0">Tổng tiền hàng</p>
+                          </td>
+                          <td class="px-4 py-2">
+                            <p class="mb-0 fw-bold text-end">{{totalPrice | vndCurrency}} đồng</p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="px-4 py-2">
+                            <p class="mb-0">Phí vận chuyển</p>
+                          </td>
+                          <td class="px-4 py-2">
+                            <p class="mb-0 fw-bold text-end">0 đồng</p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="px-4 py-2">
+                            <p class="mb-0">Thành tiền</p>
+                          </td>
+                          <td class="px-4 py-2">
+                            <p class="mb-0 fw-bold text-end">{{totalPrice | vndCurrency}} đồng</p>
+                          </td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="my-3" id="order-details__action">
+                <div class="py-2">
+                  <div class="row py-2">
+                    <div class="col-12">
+                      <div class="d-flex justify-content-end">
+                        @if (order.orderStatus === "WAIT_FOR_PAY" || order.orderStatus === "PENDING") {
+                          <a class="btn ms-3 px-3 py-2 transition text-white bg-orange bg-gradient"
+                             type="button"
+                             (click)="onDeclined()"
+                          >
+                            <i class="fa-light fa-xmark me-2"></i>
+                            <span>Huỷ đơn hàng</span>
+                          </a>
+                        }
+                        @if (order.orderStatus === "WAIT_FOR_PAY") {
+                          <a class="btn ms-3 px-3 py-2 transition text-white bg-orange bg-gradient"
+                             type="button"
+                             (click)="onPayment()"
+                          >
+                            <i class="fa-light fa-credit-card-front me-2"></i>
+                            <span>Thanh toán</span>
+                          </a>
+                        }
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>
